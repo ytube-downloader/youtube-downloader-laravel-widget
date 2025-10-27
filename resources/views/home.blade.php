@@ -83,103 +83,160 @@
                 <h3 class="text-2xl font-semibold text-slate-900 transition-colors dark:text-white">Choose your format</h3>
                 <p class="text-sm text-slate-500 transition-colors dark:text-slate-400">Card unlocks after fetching video details.</p>
             </div>
-            <article id="card-download" class="rounded-2xl border border-slate-200 bg-white p-6 transition-colors dark:border-slate-800 dark:bg-slate-900/60">
-                <div class="flex flex-wrap items-center justify-between gap-4">
-                    <div>
-                        <span class="text-xs font-semibold uppercase tracking-wide text-cyan-700 transition-colors dark:text-cyan-300">Flexible downloader</span>
-                        <h4 class="mt-1 text-xl font-semibold text-slate-900 transition-colors dark:text-white">Video or audio output</h4>
+            <article id="card-download" class="relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-colors dark:border-slate-800 dark:bg-slate-900/60">
+                <div class="flex flex-col gap-4 border-b border-slate-200 pb-5 transition-colors dark:border-slate-800 md:flex-row md:items-center md:justify-between">
+                    <div class="flex items-center gap-4">
+                        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-500/20 via-cyan-500/10 to-emerald-500/20 text-cyan-500 dark:from-cyan-500/20 dark:via-cyan-500/10 dark:to-emerald-500/20">
+                            <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 4.5h16.5M7.5 9h9m-9 4.5h6m-6 4.5h12M4.5 9h.008v.008H4.5zm0 4.5h.008v.008H4.5zm0 4.5h.008v.008H4.5z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <span class="text-xs font-semibold uppercase tracking-wide text-cyan-700 transition-colors dark:text-cyan-300">Download console</span>
+                            <h4 class="mt-1 text-xl font-semibold text-slate-900 transition-colors dark:text-white">Adaptive conversion widget</h4>
+                        </div>
                     </div>
-                    <div class="inline-flex items-center gap-2 rounded-full border border-cyan-200 bg-cyan-50 px-3 py-1 text-xs font-semibold text-cyan-700 transition-colors dark:border-cyan-500/20 dark:bg-cyan-500/5 dark:text-cyan-200">
-                        <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 12h12m-6 6V6" />
-                        </svg>
-                        Wide selection
+                    <div id="summary-state-pill" class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-600 transition-colors dark:border-slate-700 dark:bg-slate-800/70 dark:text-slate-200">
+                        <span id="summary-state-dot" class="inline-flex h-2 w-2 rounded-full bg-slate-400 transition-colors"></span>
+                        <span id="summary-state">Awaiting video lookup</span>
                     </div>
                 </div>
-                <p class="mt-3 text-sm text-slate-600 transition-colors dark:text-slate-400">
-                    Download the full video in the quality and container you need, or extract studio-grade audio with adjustable bitrate and normalisation.
+                <p class="mt-4 text-sm text-slate-600 transition-colors dark:text-slate-400">
+                    Align downloads, conversions, and exports from a single adaptive panel. Configure once, then run repeated jobs without losing your context.
                 </p>
-                <div class="mt-5 grid gap-4 md:grid-cols-2">
-                    <label class="text-xs font-semibold uppercase text-slate-500 transition-colors dark:text-slate-400">
-                        Mode
-                        <select id="download-type" class="mt-1 w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700 transition-colors focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/30 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100" disabled>
-                            <option value="video" selected>Video download</option>
-                            <option value="audio">Audio extract</option>
-                        </select>
-                    </label>
-                    <div class="rounded-xl border border-slate-200 bg-slate-50 p-4 text-xs text-slate-500 transition-colors dark:border-slate-800 dark:bg-slate-950/60 dark:text-slate-400">
-                        Switch between adaptive video and audio workflows without leaving the card. All selections stay remembered.
+                <div class="mt-6 grid gap-6 lg:grid-cols-[minmax(0,1fr)_22rem]">
+                    <div class="space-y-6">
+                        <div class="rounded-2xl border border-slate-200 bg-slate-50/80 p-5 shadow-sm transition-colors dark:border-slate-800 dark:bg-slate-900/50">
+                            <div class="flex items-start justify-between gap-4">
+                                <div class="space-y-1">
+                                    <p class="text-xs font-semibold uppercase tracking-wide text-slate-500 transition-colors dark:text-slate-400">Workflow mode</p>
+                                    <p class="text-xs text-slate-500 transition-colors dark:text-slate-500">Switch modes to reveal the relevant controls without losing previous selections.</p>
+                                </div>
+                                <span class="rounded-full bg-white px-3 py-1 text-xs font-semibold text-slate-500 shadow-sm ring-1 ring-white/70 transition-colors dark:bg-slate-900 dark:text-slate-300 dark:ring-white/5">Step 1</span>
+                            </div>
+                            <label class="mt-4 block text-xs font-semibold uppercase text-slate-500 transition-colors dark:text-slate-400">
+                                Mode
+                                <select id="download-type" class="mt-1 w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700 transition-colors focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/30 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100" disabled>
+                                    <option value="video" selected>Video download</option>
+                                    <option value="audio">Audio extract</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div id="download-video-options" class="grid gap-4 sm:grid-cols-2">
+                            <label class="group relative flex flex-col rounded-2xl border border-slate-200 bg-white p-4 text-xs font-semibold uppercase text-slate-500 transition-all hover:border-cyan-400 hover:shadow-md dark:border-slate-800 dark:bg-slate-950 dark:text-slate-400 dark:hover:border-cyan-500/40">
+                                <span>Quality</span>
+                                <select id="download-video-quality" class="mt-2 w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-700 transition-colors focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/30 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-100" disabled>
+                                    <option value="4k">4K (2160p)</option>
+                                    <option value="1440p">1440p</option>
+                                    <option value="1080p" selected>1080p</option>
+                                    <option value="720p">720p</option>
+                                    <option value="480p">480p</option>
+                                    <option value="360p">360p</option>
+                                </select>
+                            </label>
+                            <label class="group relative flex flex-col rounded-2xl border border-slate-200 bg-white p-4 text-xs font-semibold uppercase text-slate-500 transition-all hover:border-cyan-400 hover:shadow-md dark:border-slate-800 dark:bg-slate-950 dark:text-slate-400 dark:hover:border-cyan-500/40">
+                                <span>Container / Codec</span>
+                                <select id="download-video-format" class="mt-2 w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-700 transition-colors focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/30 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-100" disabled>
+                                    <option value="mp4" selected>MP4 (H.264)</option>
+                                    <option value="webm">WEBM (VP9)</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div id="download-audio-options" class="hidden grid gap-4 sm:grid-cols-2">
+                            <label class="group relative flex flex-col rounded-2xl border border-slate-200 bg-white p-4 text-xs font-semibold uppercase text-slate-500 transition-all hover:border-emerald-400 hover:shadow-md dark:border-slate-800 dark:bg-slate-950 dark:text-slate-400 dark:hover:border-emerald-500/40">
+                                <span>Bitrate</span>
+                                <select id="download-audio-bitrate" class="mt-2 w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-700 transition-colors focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-100" disabled>
+                                    <option value="320">320 kbps (Studio)</option>
+                                    <option value="256">256 kbps (Premium)</option>
+                                    <option value="192" selected>192 kbps (High)</option>
+                                    <option value="128">128 kbps (Standard)</option>
+                                    <option value="96">96 kbps (Lite)</option>
+                                </select>
+                            </label>
+                            <label class="group relative flex flex-col rounded-2xl border border-slate-200 bg-white p-4 text-xs font-semibold uppercase text-slate-500 transition-all hover:border-emerald-400 hover:shadow-md dark:border-slate-800 dark:bg-slate-950 dark:text-slate-400 dark:hover:border-emerald-500/40">
+                                <span>Normalise audio</span>
+                                <select id="download-audio-normalise" class="mt-2 w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-700 transition-colors focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-100" disabled>
+                                    <option value="false" selected>No</option>
+                                    <option value="true">Yes</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-colors dark:border-slate-800 dark:bg-slate-900/50">
+                            <div class="flex flex-wrap items-start justify-between gap-4">
+                                <div class="space-y-1">
+                                    <p class="text-xs font-semibold uppercase tracking-wide text-slate-500 transition-colors dark:text-slate-400">Launch job</p>
+                                    <p class="text-xs text-slate-500 transition-colors dark:text-slate-500">We will enqueue the download, monitor progress, and surface the link automatically.</p>
+                                </div>
+                                <span class="rounded-full bg-white px-3 py-1 text-xs font-semibold text-slate-500 shadow-sm ring-1 ring-white/70 transition-colors dark:bg-slate-900 dark:text-slate-300 dark:ring-white/5">Step 2</span>
+                            </div>
+                            <button
+                                id="start-download"
+                                class="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-cyan-500 px-4 py-3 text-sm font-semibold text-white transition focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 disabled:cursor-not-allowed disabled:bg-slate-200 disabled:text-slate-400 dark:text-slate-950 dark:disabled:bg-slate-700 dark:disabled:text-slate-400"
+                                data-loading="false"
+                                aria-live="polite"
+                                aria-busy="false"
+                                disabled
+                            >
+                                <svg
+                                    id="start-download-icon"
+                                    class="h-4 w-4"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    viewBox="0 0 24 24"
+                                    aria-hidden="true"
+                                >
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 7.5 7.5m0 0 7.5-7.5m-7.5 7.5V3" />
+                                </svg>
+                                <svg
+                                    id="start-download-spinner"
+                                    class="hidden h-4 w-4 download-spinner text-white transition-colors dark:text-slate-950"
+                                    viewBox="0 0 24 24"
+                                    aria-hidden="true"
+                                >
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" />
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 0 1 8-8v3a5 5 0 0 0-5 5H4Z" />
+                                </svg>
+                                <span id="start-download-label" class="whitespace-nowrap" data-default-label="Download video">Download video</span>
+                            </button>
+                        </div>
                     </div>
+                    <aside class="relative overflow-hidden rounded-2xl border border-cyan-500/40 bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 p-6 text-white shadow-lg dark:border-cyan-500/30">
+                        <div class="pointer-events-none absolute -right-16 top-14 h-40 w-40 rounded-full bg-cyan-500/30 blur-3xl"></div>
+                        <div class="pointer-events-none absolute -bottom-12 left-10 h-40 w-40 rounded-full bg-emerald-500/20 blur-3xl"></div>
+                        <div class="relative space-y-6">
+                            <div class="flex items-start justify-between gap-3">
+                                <p class="text-xs font-semibold uppercase tracking-wide text-cyan-200">Live summary</p>
+                                <span class="rounded-full border border-cyan-500/40 bg-cyan-500/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.35em] text-cyan-100">Auto refresh</span>
+                            </div>
+                            <dl class="space-y-4 text-sm">
+                                <div class="flex items-center justify-between gap-3">
+                                    <dt class="text-slate-400">Mode</dt>
+                                    <dd id="summary-mode" class="font-semibold text-white">Video download</dd>
+                                </div>
+                                <div class="flex items-center justify-between gap-3">
+                                    <dt class="text-slate-400">Quality</dt>
+                                    <dd id="summary-quality" class="font-semibold text-white">1080p</dd>
+                                </div>
+                                <div class="flex items-center justify-between gap-3">
+                                    <dt class="text-slate-400">Format</dt>
+                                    <dd id="summary-format" class="font-semibold text-white">MP4 (H.264)</dd>
+                                </div>
+                                <div id="summary-audio-wrapper" class="flex items-center justify-between gap-3 hidden">
+                                    <dt class="text-slate-400">Audio bitrate</dt>
+                                    <dd id="summary-audio" class="font-semibold text-white">192 kbps (High)</dd>
+                                </div>
+                                <div id="summary-normalise-wrapper" class="flex items-center justify-between gap-3 hidden">
+                                    <dt class="text-slate-400">Normalisation</dt>
+                                    <dd id="summary-normalise" class="font-semibold text-white">No</dd>
+                                </div>
+                            </dl>
+                            <div class="rounded-xl border border-white/10 bg-white/5 p-4 text-xs text-slate-200">
+                                We translate your selections into precise payloads for the Video Downloader API, orchestrate queue workers, and surface signed URLs as soon as they are ready.
+                            </div>
+                        </div>
+                    </aside>
                 </div>
-                <div id="download-video-options" class="mt-4 grid gap-4 md:grid-cols-2">
-                    <label class="text-xs font-semibold uppercase text-slate-500 transition-colors dark:text-slate-400">
-                        Quality
-                        <select id="download-video-quality" class="mt-1 w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700 transition-colors focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/30 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100" disabled>
-                            <option value="4k">4K (2160p)</option>
-                            <option value="1440p">1440p</option>
-                            <option value="1080p" selected>1080p</option>
-                            <option value="720p">720p</option>
-                            <option value="480p">480p</option>
-                            <option value="360p">360p</option>
-                        </select>
-                    </label>
-                    <label class="text-xs font-semibold uppercase text-slate-500 transition-colors dark:text-slate-400">
-                        Container / Codec
-                        <select id="download-video-format" class="mt-1 w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700 transition-colors focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/30 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100" disabled>
-                            <option value="mp4" selected>MP4 (H.264)</option>
-                            <option value="webm">WEBM (VP9)</option>
-                        </select>
-                    </label>
-                </div>
-                <div id="download-audio-options" class="mt-4 grid gap-4 md:grid-cols-2 hidden">
-                    <label class="text-xs font-semibold uppercase text-slate-500 transition-colors dark:text-slate-400">
-                        Bitrate
-                        <select id="download-audio-bitrate" class="mt-1 w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700 transition-colors focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/30 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100" disabled>
-                            <option value="320">320 kbps (Studio)</option>
-                            <option value="256">256 kbps (Premium)</option>
-                            <option value="192" selected>192 kbps (High)</option>
-                            <option value="128">128 kbps (Standard)</option>
-                            <option value="96">96 kbps (Lite)</option>
-                        </select>
-                    </label>
-                    <label class="text-xs font-semibold uppercase text-slate-500 transition-colors dark:text-slate-400">
-                        Normalise audio
-                        <select id="download-audio-normalise" class="mt-1 w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700 transition-colors focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/30 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100" disabled>
-                            <option value="false" selected>No</option>
-                            <option value="true">Yes</option>
-                        </select>
-                    </label>
-                </div>
-                <button
-                    id="start-download"
-                    class="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-cyan-500 px-4 py-3 text-sm font-semibold text-white transition focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 disabled:cursor-not-allowed disabled:bg-slate-200 disabled:text-slate-400 dark:text-slate-950 dark:disabled:bg-slate-700 dark:disabled:text-slate-400"
-                    data-loading="false"
-                    aria-live="polite"
-                    aria-busy="false"
-                    disabled
-                >
-                    <svg
-                        id="start-download-icon"
-                        class="h-4 w-4"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        viewBox="0 0 24 24"
-                        aria-hidden="true"
-                    >
-                        <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 7.5 7.5m0 0 7.5-7.5m-7.5 7.5V3" />
-                    </svg>
-                    <svg
-                        id="start-download-spinner"
-                        class="hidden h-4 w-4 download-spinner text-white transition-colors dark:text-slate-950"
-                        viewBox="0 0 24 24"
-                        aria-hidden="true"
-                    >
-                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" />
-                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 0 1 8-8v3a5 5 0 0 0-5 5H4Z" />
-                    </svg>
-                    <span id="start-download-label" class="whitespace-nowrap" data-default-label="Download video">Download video</span>
-                </button>
             </article>
         </section>
 
@@ -305,6 +362,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const startDownloadSpinner = document.getElementById('start-download-spinner');
     const downloadsTable = document.getElementById('downloads-table');
     let downloadsEmpty = document.getElementById('downloads-empty');
+    const summaryState = document.getElementById('summary-state');
+    const summaryStatePill = document.getElementById('summary-state-pill');
+    const summaryStateDot = document.getElementById('summary-state-dot');
+    const summaryMode = document.getElementById('summary-mode');
+    const summaryQuality = document.getElementById('summary-quality');
+    const summaryFormat = document.getElementById('summary-format');
+    const summaryAudioWrapper = document.getElementById('summary-audio-wrapper');
+    const summaryAudio = document.getElementById('summary-audio');
+    const summaryNormaliseWrapper = document.getElementById('summary-normalise-wrapper');
+    const summaryNormalise = document.getElementById('summary-normalise');
     const downloadsEmptyTemplate = downloadsEmpty?.outerHTML ?? `
         <tr id="downloads-empty">
             <td colspan="6" class="px-4 py-6 text-center text-slate-500">
@@ -318,15 +385,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const defaultQualities = ['4k', '1440p', '1080p', '720p', '480p', '360p'];
     const defaultAudio = [320, 256, 192, 128, 96];
 
+    setSummaryState({ label: 'Awaiting video lookup', tone: 'idle' });
+    updateSummarySelections();
+
     lookupForm.addEventListener('submit', async (event) => {
         event.preventDefault();
         const url = urlInput.value.trim();
         if (!url) {
             showFeedback('Please paste a valid URL.', true);
+            setSummaryState({ label: 'Paste a valid URL to continue.', tone: 'error' });
             return;
         }
         toggleLookupButton(true);
         showFeedback('Fetching metadata…', false);
+        setSummaryState({ label: 'Fetching metadata…', tone: 'loading' });
         try {
             const response = await fetch(`/api/v1/video-info?${new URLSearchParams({ url })}`, {
                 headers: {
@@ -341,10 +413,12 @@ document.addEventListener('DOMContentLoaded', () => {
             state.videoInfo = payload.data ?? {};
             populateVideoInfo(state.videoInfo);
             enableDownloadCard(true);
+            setSummaryState({ label: 'Widget unlocked. Configure your job.', tone: 'ready' });
             showFeedback('Video details loaded. Configure your download below.', false);
         } catch (error) {
             enableDownloadCard(false);
             showFeedback(error.message ?? 'Unable to fetch details.', true);
+            setSummaryState({ label: 'Lookup failed. Check the URL.', tone: 'error' });
             console.error(error);
         } finally {
             toggleLookupButton(false);
@@ -353,6 +427,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     downloadTypeSelect.addEventListener('change', () => {
         updateDownloadModeUI();
+    });
+
+    [videoQualitySelect, videoFormatSelect, audioBitrateSelect, audioNormaliseSelect].forEach((control) => {
+        control?.addEventListener('change', () => {
+            updateSummarySelections();
+        });
     });
 
     startDownloadButton.addEventListener('click', () => {
@@ -386,6 +466,80 @@ document.addEventListener('DOMContentLoaded', () => {
         button.textContent = isLoading ? 'Fetching…' : 'Fetch details';
     }
 
+    function setSummaryState({ label, tone = 'idle' }) {
+        if (!summaryState || !summaryStatePill || !summaryStateDot) {
+            return;
+        }
+
+        const toneStyles = {
+            idle: {
+                pill: 'border-slate-200 bg-slate-100 text-slate-600 dark:border-slate-700 dark:bg-slate-800/70 dark:text-slate-200',
+                dot: 'bg-slate-400',
+            },
+            ready: {
+                pill: 'border-emerald-400/40 bg-emerald-500/10 text-emerald-600 dark:border-emerald-400/30 dark:bg-emerald-400/10 dark:text-emerald-200',
+                dot: 'bg-emerald-400',
+            },
+            loading: {
+                pill: 'border-amber-400/40 bg-amber-500/10 text-amber-600 dark:border-amber-400/20 dark:bg-amber-500/10 dark:text-amber-200',
+                dot: 'bg-amber-400',
+            },
+            error: {
+                pill: 'border-rose-400/40 bg-rose-500/10 text-rose-500 dark:border-rose-400/20 dark:bg-rose-500/10 dark:text-rose-200',
+                dot: 'bg-rose-400',
+            },
+            queued: {
+                pill: 'border-cyan-400/40 bg-cyan-500/10 text-cyan-500 dark:border-cyan-400/30 dark:bg-cyan-500/10 dark:text-cyan-200',
+                dot: 'bg-cyan-400',
+            },
+            processing: {
+                pill: 'border-indigo-400/40 bg-indigo-500/10 text-indigo-500 dark:border-indigo-400/30 dark:bg-indigo-500/10 dark:text-indigo-200',
+                dot: 'bg-indigo-400',
+            },
+            success: {
+                pill: 'border-emerald-400/50 bg-emerald-500/15 text-emerald-500 dark:border-emerald-400/30 dark:bg-emerald-500/10 dark:text-emerald-200',
+                dot: 'bg-emerald-300',
+            },
+        };
+
+        const nextTone = toneStyles[tone] ? tone : 'idle';
+        const previousTone = summaryStatePill.dataset.tone;
+
+        const removeToneClasses = (element, classes) => {
+            if (!element || !classes) {
+                return;
+            }
+            classes
+                .trim()
+                .split(/\s+/)
+                .filter(Boolean)
+                .forEach((cls) => element.classList.remove(cls));
+        };
+
+        const addToneClasses = (element, classes) => {
+            if (!element || !classes) {
+                return;
+            }
+            element.classList.add(
+                ...classes
+                    .trim()
+                    .split(/\s+/)
+                    .filter(Boolean)
+            );
+        };
+
+        if (previousTone && toneStyles[previousTone]) {
+            removeToneClasses(summaryStatePill, toneStyles[previousTone].pill);
+            removeToneClasses(summaryStateDot, toneStyles[previousTone].dot);
+        }
+
+        addToneClasses(summaryStatePill, toneStyles[nextTone].pill);
+        addToneClasses(summaryStateDot, toneStyles[nextTone].dot);
+        summaryStatePill.dataset.tone = nextTone;
+
+        summaryState.textContent = label;
+    }
+
     function showFeedback(message, isError) {
         if (!message) {
             feedback.classList.add('hidden');
@@ -394,7 +548,84 @@ document.addEventListener('DOMContentLoaded', () => {
         feedback.textContent = message;
         feedback.classList.remove('hidden');
         feedback.classList.toggle('text-rose-400', isError);
-        feedback.classList.toggle('text-cyan-200', !isError);
+        feedback.classList.toggle('text-emerald-400', !isError);
+    }
+
+    function getSelectedOptionLabel(select) {
+        if (!select) {
+            return '—';
+        }
+
+        const option = select.selectedOptions?.[0] ?? null;
+        if (option?.textContent) {
+            return option.textContent.trim();
+        }
+
+        const fallback = select.value ?? '';
+        return fallback ? fallback.toString() : '—';
+    }
+
+    function updateSummarySelections() {
+        if (!summaryMode) {
+            return;
+        }
+
+        const mode = downloadTypeSelect?.value ?? 'video';
+        const isAudio = mode === 'audio';
+
+        summaryMode.textContent = isAudio ? 'Audio extract' : 'Video download';
+
+        if (summaryQuality) {
+            summaryQuality.textContent = isAudio
+                ? 'Audio conversion'
+                : getSelectedOptionLabel(videoQualitySelect);
+        }
+
+        if (summaryFormat) {
+            summaryFormat.textContent = isAudio
+                ? 'MP3 (Audio extract)'
+                : getSelectedOptionLabel(videoFormatSelect);
+        }
+
+        if (summaryAudioWrapper) {
+            summaryAudioWrapper.classList.toggle('hidden', !isAudio);
+        }
+
+        if (summaryNormaliseWrapper) {
+            summaryNormaliseWrapper.classList.toggle('hidden', !isAudio);
+        }
+
+        if (isAudio) {
+            if (summaryAudio) {
+                summaryAudio.textContent = getSelectedOptionLabel(audioBitrateSelect);
+            }
+
+            if (summaryNormalise) {
+                summaryNormalise.textContent = audioNormaliseSelect?.value === 'true' ? 'Yes' : 'No';
+            }
+        }
+    }
+
+    function updateSummaryFromRecord(record) {
+        if (!record) {
+            return;
+        }
+
+        const status = record.status ?? 'queued';
+
+        switch (status) {
+            case 'completed':
+                setSummaryState({ label: 'Latest job completed successfully.', tone: 'success' });
+                break;
+            case 'failed':
+                setSummaryState({ label: 'Latest job failed. Check status panel.', tone: 'error' });
+                break;
+            case 'processing':
+                setSummaryState({ label: 'Processing download…', tone: 'processing' });
+                break;
+            default:
+                setSummaryState({ label: 'Download queued. Monitoring status…', tone: 'queued' });
+        }
     }
 
     function populateVideoInfo(info) {
@@ -418,6 +649,7 @@ document.addEventListener('DOMContentLoaded', () => {
     async function startDownload({ quality, format, options }) {
         if (!state.currentUrl) {
             showFeedback('Fetch video details first.', true);
+            setSummaryState({ label: 'Lookup required before download.', tone: 'error' });
             return;
         }
 
@@ -429,6 +661,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         setDownloadButtonLoading(true);
+        setSummaryState({ label: 'Submitting download request…', tone: 'loading' });
         showFeedback('Sending download request…', false);
 
         try {
@@ -462,12 +695,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
             upsertDownloadRecord(record);
             renderDownloads();
+            updateSummaryFromRecord(record);
 
             showFeedback('Download queued. Tracking status…', false);
             pollDownload(record.download_id);
             ensureProgressPoller(record);
         } catch (error) {
             showFeedback(error.message ?? 'Unable to start download.', true);
+            setSummaryState({ label: 'Download request failed. Try again.', tone: 'error' });
             console.error(error);
         } finally {
             setDownloadButtonLoading(false);
@@ -482,6 +717,19 @@ document.addEventListener('DOMContentLoaded', () => {
         const metadata = { ...(resource.metadata ?? {}) };
         const options = metadata.options ?? {};
         const format = String(resource.format ?? options.format ?? 'mp4').toLowerCase();
+
+        const resolvedStoragePath =
+            resource.storage_path ??
+            resource.download_url ??
+            metadata.download_url ??
+            metadata.api_response?.download_url ??
+            metadata.progress?.download_url ??
+            null;
+
+        if (resolvedStoragePath) {
+            metadata.download_url = metadata.download_url ?? resolvedStoragePath;
+        }
+
         const titleCandidates = [
             resource.video_title,
             metadata.info?.title,
@@ -520,8 +768,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         let status = normaliseStatus(resource.status);
+        const hasResolvedDownload = Boolean(resolvedStoragePath);
 
         if (hasTerminalProgress && status !== 'failed') {
+            status = 'completed';
+        }
+
+        if (hasResolvedDownload && status !== 'failed') {
             status = 'completed';
         }
 
@@ -531,7 +784,7 @@ document.addEventListener('DOMContentLoaded', () => {
             format,
             quality,
             status,
-            storage_path: resource.storage_path ?? null,
+            storage_path: resolvedStoragePath ?? null,
             queued_at: queuedAt,
             updated_at: updatedAt,
             error_message: resource.error_message ?? null,
@@ -606,6 +859,20 @@ document.addEventListener('DOMContentLoaded', () => {
         return ['mp3', 'm4a', 'aac', 'ogg', 'wav', 'flac'].includes((format ?? '').toString().toLowerCase());
     }
 
+    function recordHasDownloadUrl(record) {
+        if (!record) {
+            return false;
+        }
+
+        const metadataUrl =
+            record.metadata?.download_url ??
+            record.metadata?.progress?.download_url ??
+            record.metadata?.progress?.payload?.download_url ??
+            null;
+
+        return Boolean(record.storage_path ?? metadataUrl);
+    }
+
     function getSortedDownloads() {
         return [...state.downloads].sort((a, b) => {
             const left = new Date(a.queued_at ?? a.updated_at ?? 0).getTime();
@@ -646,11 +913,17 @@ if (startDownloadLabel && !isLoading) {
         } else {
             startDownloadButton.classList.add('bg-cyan-500', 'hover:bg-cyan-400', 'focus-visible:ring-cyan-300');
         }
+
+        updateSummarySelections();
     }
 
     function enableDownloadCard(enabled) {
         if (downloadCard) {
             downloadCard.classList.toggle('opacity-60', !enabled);
+        }
+
+        if (enabled) {
+            setSummaryState({ label: 'Widget unlocked. Configure your job.', tone: 'ready' });
         }
 
         const isLoading = startDownloadButton?.dataset?.loading === 'true';
@@ -760,6 +1033,12 @@ if (startDownloadLabel && !isLoading) {
             return;
         }
 
+        if (recordHasDownloadUrl(record)) {
+            clearStatusPoller(record.download_id);
+            clearProgressPoller(record.download_id);
+            return;
+        }
+
         if (['completed', 'failed'].includes(record.status)) {
             clearProgressPoller(record.download_id);
             return;
@@ -852,6 +1131,7 @@ if (startDownloadLabel && !isLoading) {
             data.url ??
             state.downloads[index].metadata?.download_url ??
             state.downloads[index].storage_path;
+        const hasDownloadLink = Boolean(downloadUrl);
 
         const errorMessage = data.error ?? data.error_message ?? state.downloads[index].error_message ?? null;
 
@@ -872,9 +1152,15 @@ if (startDownloadLabel && !isLoading) {
         };
 
         const derivedStatus = data.status ?? state.downloads[index].status;
-        const status = Number.isFinite(rawProgress) && rawProgress >= 1000
-            ? 'completed'
-            : normaliseStatus(derivedStatus);
+        let status = normaliseStatus(derivedStatus);
+
+        if (Number.isFinite(rawProgress) && rawProgress >= 1000 && status !== 'failed') {
+            status = 'completed';
+        }
+
+        if (hasDownloadLink && status !== 'failed') {
+            status = 'completed';
+        }
 
         const nextRecord = {
             ...state.downloads[index],
@@ -887,8 +1173,9 @@ if (startDownloadLabel && !isLoading) {
 
         state.downloads[index] = nextRecord;
         renderDownloads();
+        updateSummaryFromRecord(nextRecord);
 
-        if (['completed', 'failed'].includes(status) || downloadUrl) {
+        if (['completed', 'failed'].includes(status) || hasDownloadLink) {
             clearProgressPoller(downloadId);
             clearStatusPoller(downloadId);
             refreshDownloadStatus(downloadId);
@@ -907,12 +1194,15 @@ if (startDownloadLabel && !isLoading) {
 
         upsertDownloadRecord(record);
         renderDownloads();
-        ensureProgressPoller(record);
+        updateSummaryFromRecord(record);
 
-        if (['completed', 'failed'].includes(record.status)) {
+        if (['completed', 'failed'].includes(record.status) || recordHasDownloadUrl(record)) {
             clearStatusPoller(record.download_id);
             clearProgressPoller(record.download_id);
+            return;
         }
+
+        ensureProgressPoller(record);
     }
 
     function renderDownloads() {
