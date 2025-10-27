@@ -10,6 +10,22 @@
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
+@custom-variant dark (&:where(.dark &));
+
+@layer base {
+    :root {
+        color-scheme: light;
+    }
+
+    .dark {
+        color-scheme: dark;
+    }
+
+    ::selection {
+        @apply bg-cyan-500/70 text-white;
+    }
+}
+
 @layer components {
     .download-spinner {
         display: inline-block;

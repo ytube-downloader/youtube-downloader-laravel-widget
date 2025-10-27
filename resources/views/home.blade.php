@@ -4,40 +4,40 @@
 @section('description', 'Paste any supported video link to download as MP4 or extract MP3 audio with instant status tracking.')
 
 @section('content')
-<section class="bg-gradient-to-b from-slate-950 via-slate-950 to-slate-900 pb-20">
+<section class="bg-gradient-to-b from-slate-100 via-white to-slate-200 pb-20 transition-colors dark:from-slate-950 dark:via-slate-950 dark:to-slate-900">
     <div class="mx-auto flex w-full max-w-6xl flex-col gap-12 px-6 pt-16">
         <div class="flex flex-col gap-6 text-center">
-            <span class="inline-flex items-center justify-center gap-2 self-center rounded-full border border-cyan-500/30 bg-cyan-500/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-cyan-200">
+            <span class="inline-flex items-center justify-center gap-2 self-center rounded-full border border-cyan-600/20 bg-cyan-100 px-4 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-cyan-700 transition-colors dark:border-cyan-500/30 dark:bg-cyan-500/10 dark:text-cyan-200">
                 Multi-platform support
             </span>
-            <h1 class="text-4xl font-semibold tracking-tight text-white md:text-6xl">
+            <h1 class="text-4xl font-semibold tracking-tight text-slate-900 transition-colors md:text-6xl dark:text-white">
                 Download videos or extract audio in seconds
             </h1>
-            <p class="text-base text-slate-300 md:text-lg">
+            <p class="text-base text-slate-600 transition-colors md:text-lg dark:text-slate-300">
                 Paste a link from YouTube, TikTok, Instagram, Facebook, Twitter/X, Vimeo, or Dailymotion.
                 Choose MP4 video quality or MP3 bitrate, convert, and track progress in real-time.
             </p>
         </div>
 
         <div class="mx-auto w-full max-w-4xl space-y-6">
-            <div class="rounded-2xl border border-slate-800 bg-slate-900/70 p-6 shadow-xl shadow-cyan-500/5">
+            <div class="rounded-2xl border border-slate-200 bg-white p-6 transition-colors dark:border-slate-800 dark:bg-slate-900/70">
                 <form id="lookup-form" class="space-y-4">
-                    <label for="video-url" class="block text-sm font-medium text-slate-200">Paste video URL</label>
+                    <label for="video-url" class="block text-sm font-medium text-slate-700 transition-colors dark:text-slate-200">Paste video URL</label>
                     <div class="flex flex-col gap-4 md:flex-row">
-                        <div class="flex-1 rounded-xl border border-slate-800 bg-slate-950/60 px-4 py-3 focus-within:border-cyan-400 focus-within:bg-slate-900 focus-within:ring-2 focus-within:ring-cyan-500/40">
+                        <div class="flex-1 rounded-xl border border-slate-200 bg-white px-4 py-3 transition-all focus-within:border-cyan-400 focus-within:bg-slate-50 focus-within:ring-2 focus-within:ring-cyan-500/40 dark:border-slate-800 dark:bg-slate-950/60 dark:focus-within:bg-slate-900">
                             <input
                                 type="url"
                                 id="video-url"
                                 name="url"
                                 required
                                 placeholder="https://www.youtube.com/watch?v=video-id"
-                                class="w-full bg-transparent text-base text-slate-100 placeholder:text-slate-500 focus:outline-none"
+                                class="w-full bg-transparent text-base text-slate-900 placeholder:text-slate-400 focus:outline-none dark:text-slate-100 dark:placeholder:text-slate-500"
                             >
                         </div>
                         <button
                             type="submit"
                             id="lookup-submit"
-                            class="inline-flex items-center justify-center gap-2 rounded-xl bg-cyan-500 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 disabled:cursor-not-allowed disabled:bg-slate-700 disabled:text-slate-400"
+                            class="inline-flex items-center justify-center gap-2 rounded-xl bg-cyan-500 px-6 py-3 text-sm font-semibold text-white transition hover:bg-cyan-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 disabled:cursor-not-allowed disabled:bg-slate-200 disabled:text-slate-400 dark:text-slate-950 dark:disabled:bg-slate-700 dark:disabled:text-slate-400"
                         >
                             <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-4.35-4.35m0 0a7.5 7.5 0 1 0-10.607-10.607 7.5 7.5 0 0 0 10.607 10.607Z" />
@@ -49,28 +49,28 @@
                 <p id="feedback" class="hidden text-sm text-rose-400"></p>
             </div>
 
-            <div id="video-info-card" class="hidden rounded-2xl border border-slate-800 bg-slate-900/60 p-6 backdrop-blur">
+            <div id="video-info-card" class="hidden rounded-2xl border border-slate-200 bg-white p-6 transition-colors dark:border-slate-800 dark:bg-slate-900/60 backdrop-blur">
                 <div class="flex flex-col gap-6 md:flex-row">
-                    <div class="aspect-video w-full overflow-hidden rounded-xl border border-slate-800 bg-slate-950 md:w-64">
+                    <div class="aspect-video w-full overflow-hidden rounded-xl border border-slate-200 bg-slate-100 transition-colors md:w-64 dark:border-slate-800 dark:bg-slate-950">
                         <img id="video-thumbnail" src="" alt="Video thumbnail" class="h-full w-full object-cover">
                     </div>
-                    <div class="flex-1 space-y-4 text-sm text-slate-200">
+                    <div class="flex-1 space-y-4 text-sm text-slate-600 transition-colors dark:text-slate-200">
                         <div>
-                            <p class="text-xs uppercase tracking-wide text-cyan-300">Preview</p>
-                            <h2 id="video-title" class="text-lg font-semibold text-white">—</h2>
-                            <p id="video-metadata" class="text-xs text-slate-400">—</p>
+                            <p class="text-xs uppercase tracking-wide text-cyan-700 transition-colors dark:text-cyan-300">Preview</p>
+                            <h2 id="video-title" class="text-lg font-semibold text-slate-900 transition-colors dark:text-white">—</h2>
+                            <p id="video-metadata" class="text-xs text-slate-500 transition-colors dark:text-slate-400">—</p>
                         </div>
                         <div class="grid gap-3 md:grid-cols-2">
-                            <div class="rounded-xl border border-slate-800 bg-slate-950/70 p-4">
-                                <p class="text-xs font-medium uppercase text-slate-400">Available video qualities</p>
-                                <p id="video-qualities" class="mt-1 text-sm text-slate-200">4K, 1440p, 1080p, 720p, 480p, 360p</p>
+                            <div class="rounded-xl border border-slate-200 bg-slate-50 p-4 transition-colors dark:border-slate-800 dark:bg-slate-950/70">
+                                <p class="text-xs font-medium uppercase text-slate-500 transition-colors dark:text-slate-400">Available video qualities</p>
+                                <p id="video-qualities" class="mt-1 text-sm text-slate-700 transition-colors dark:text-slate-200">4K, 1440p, 1080p, 720p, 480p, 360p</p>
                             </div>
-                            <div class="rounded-xl border border-slate-800 bg-slate-950/70 p-4">
-                                <p class="text-xs font-medium uppercase text-slate-400">Available audio bitrates</p>
-                                <p id="audio-qualities" class="mt-1 text-sm text-slate-200">320, 256, 192, 128, 96 kbps</p>
+                            <div class="rounded-xl border border-slate-200 bg-slate-50 p-4 transition-colors dark:border-slate-800 dark:bg-slate-950/70">
+                                <p class="text-xs font-medium uppercase text-slate-500 transition-colors dark:text-slate-400">Available audio bitrates</p>
+                                <p id="audio-qualities" class="mt-1 text-sm text-slate-700 transition-colors dark:text-slate-200">320, 256, 192, 128, 96 kbps</p>
                             </div>
                         </div>
-                        <div class="rounded-xl border border-cyan-500/20 bg-cyan-500/5 p-4 text-xs text-cyan-200">
+                        <div class="rounded-xl border border-cyan-200/80 bg-cyan-50 p-4 text-xs text-cyan-700 transition-colors dark:border-cyan-500/20 dark:bg-cyan-500/5 dark:text-cyan-200">
                             Ready to download. Choose MP4 video or MP3 audio below.
                         </div>
                     </div>
@@ -80,41 +80,41 @@
 
         <section id="card-grid" class="space-y-4">
             <div class="flex flex-col gap-2">
-                <h3 class="text-2xl font-semibold text-white">Choose your format</h3>
-                <p class="text-sm text-slate-400">Card unlocks after fetching video details.</p>
+                <h3 class="text-2xl font-semibold text-slate-900 transition-colors dark:text-white">Choose your format</h3>
+                <p class="text-sm text-slate-500 transition-colors dark:text-slate-400">Card unlocks after fetching video details.</p>
             </div>
-            <article id="card-download" class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 transition">
+            <article id="card-download" class="rounded-2xl border border-slate-200 bg-white p-6 transition-colors dark:border-slate-800 dark:bg-slate-900/60">
                 <div class="flex flex-wrap items-center justify-between gap-4">
                     <div>
-                        <span class="text-xs font-semibold uppercase tracking-wide text-cyan-300">Flexible downloader</span>
-                        <h4 class="mt-1 text-xl font-semibold text-white">Video or audio output</h4>
+                        <span class="text-xs font-semibold uppercase tracking-wide text-cyan-700 transition-colors dark:text-cyan-300">Flexible downloader</span>
+                        <h4 class="mt-1 text-xl font-semibold text-slate-900 transition-colors dark:text-white">Video or audio output</h4>
                     </div>
-                    <div class="inline-flex items-center gap-2 rounded-full border border-cyan-500/20 bg-cyan-500/5 px-3 py-1 text-xs font-semibold text-cyan-200">
+                    <div class="inline-flex items-center gap-2 rounded-full border border-cyan-200 bg-cyan-50 px-3 py-1 text-xs font-semibold text-cyan-700 transition-colors dark:border-cyan-500/20 dark:bg-cyan-500/5 dark:text-cyan-200">
                         <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M6 12h12m-6 6V6" />
                         </svg>
                         Wide selection
                     </div>
                 </div>
-                <p class="mt-3 text-sm text-slate-400">
+                <p class="mt-3 text-sm text-slate-600 transition-colors dark:text-slate-400">
                     Download the full video in the quality and container you need, or extract studio-grade audio with adjustable bitrate and normalisation.
                 </p>
                 <div class="mt-5 grid gap-4 md:grid-cols-2">
-                    <label class="text-xs font-semibold uppercase text-slate-400">
+                    <label class="text-xs font-semibold uppercase text-slate-500 transition-colors dark:text-slate-400">
                         Mode
-                        <select id="download-type" class="mt-1 w-full rounded-lg border border-slate-800 bg-slate-950 px-3 py-2 text-sm text-slate-100 focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/30" disabled>
+                        <select id="download-type" class="mt-1 w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700 transition-colors focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/30 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100" disabled>
                             <option value="video" selected>Video download</option>
                             <option value="audio">Audio extract</option>
                         </select>
                     </label>
-                    <div class="rounded-xl border border-slate-800 bg-slate-950/60 p-4 text-xs text-slate-400">
+                    <div class="rounded-xl border border-slate-200 bg-slate-50 p-4 text-xs text-slate-500 transition-colors dark:border-slate-800 dark:bg-slate-950/60 dark:text-slate-400">
                         Switch between adaptive video and audio workflows without leaving the card. All selections stay remembered.
                     </div>
                 </div>
                 <div id="download-video-options" class="mt-4 grid gap-4 md:grid-cols-2">
-                    <label class="text-xs font-semibold uppercase text-slate-400">
+                    <label class="text-xs font-semibold uppercase text-slate-500 transition-colors dark:text-slate-400">
                         Quality
-                        <select id="download-video-quality" class="mt-1 w-full rounded-lg border border-slate-800 bg-slate-950 px-3 py-2 text-sm text-slate-100 focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/30" disabled>
+                        <select id="download-video-quality" class="mt-1 w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700 transition-colors focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/30 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100" disabled>
                             <option value="4k">4K (2160p)</option>
                             <option value="1440p">1440p</option>
                             <option value="1080p" selected>1080p</option>
@@ -123,18 +123,18 @@
                             <option value="360p">360p</option>
                         </select>
                     </label>
-                    <label class="text-xs font-semibold uppercase text-slate-400">
+                    <label class="text-xs font-semibold uppercase text-slate-500 transition-colors dark:text-slate-400">
                         Container / Codec
-                        <select id="download-video-format" class="mt-1 w-full rounded-lg border border-slate-800 bg-slate-950 px-3 py-2 text-sm text-slate-100 focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/30" disabled>
+                        <select id="download-video-format" class="mt-1 w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700 transition-colors focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/30 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100" disabled>
                             <option value="mp4" selected>MP4 (H.264)</option>
                             <option value="webm">WEBM (VP9)</option>
                         </select>
                     </label>
                 </div>
                 <div id="download-audio-options" class="mt-4 grid gap-4 md:grid-cols-2 hidden">
-                    <label class="text-xs font-semibold uppercase text-slate-400">
+                    <label class="text-xs font-semibold uppercase text-slate-500 transition-colors dark:text-slate-400">
                         Bitrate
-                        <select id="download-audio-bitrate" class="mt-1 w-full rounded-lg border border-slate-800 bg-slate-950 px-3 py-2 text-sm text-slate-100 focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/30" disabled>
+                        <select id="download-audio-bitrate" class="mt-1 w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700 transition-colors focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/30 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100" disabled>
                             <option value="320">320 kbps (Studio)</option>
                             <option value="256">256 kbps (Premium)</option>
                             <option value="192" selected>192 kbps (High)</option>
@@ -142,9 +142,9 @@
                             <option value="96">96 kbps (Lite)</option>
                         </select>
                     </label>
-                    <label class="text-xs font-semibold uppercase text-slate-400">
+                    <label class="text-xs font-semibold uppercase text-slate-500 transition-colors dark:text-slate-400">
                         Normalise audio
-                        <select id="download-audio-normalise" class="mt-1 w-full rounded-lg border border-slate-800 bg-slate-950 px-3 py-2 text-sm text-slate-100 focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/30" disabled>
+                        <select id="download-audio-normalise" class="mt-1 w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700 transition-colors focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/30 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100" disabled>
                             <option value="false" selected>No</option>
                             <option value="true">Yes</option>
                         </select>
@@ -152,7 +152,7 @@
                 </div>
                 <button
                     id="start-download"
-                    class="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-semibold text-slate-950 transition focus:outline-none focus-visible:ring-2 disabled:cursor-not-allowed disabled:bg-slate-700 disabled:text-slate-400"
+                    class="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-cyan-500 px-4 py-3 text-sm font-semibold text-white transition focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 disabled:cursor-not-allowed disabled:bg-slate-200 disabled:text-slate-400 dark:text-slate-950 dark:disabled:bg-slate-700 dark:disabled:text-slate-400"
                     data-loading="false"
                     aria-live="polite"
                     aria-busy="false"
@@ -171,7 +171,7 @@
                     </svg>
                     <svg
                         id="start-download-spinner"
-                        class="hidden h-4 w-4 download-spinner text-slate-950"
+                        class="hidden h-4 w-4 download-spinner text-white transition-colors dark:text-slate-950"
                         viewBox="0 0 24 24"
                         aria-hidden="true"
                     >
@@ -185,12 +185,12 @@
 
         <section id="status" class="space-y-4">
             <div class="flex flex-col gap-2">
-                <h3 class="text-2xl font-semibold text-white">Download status</h3>
-                <p class="text-sm text-slate-400">We’ll keep polling while your download is processing.</p>
+                <h3 class="text-2xl font-semibold text-slate-900 transition-colors dark:text-white">Download status</h3>
+                <p class="text-sm text-slate-500 transition-colors dark:text-slate-400">We’ll keep polling while your download is processing.</p>
             </div>
-            <div class="overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/60">
-                <table class="min-w-full divide-y divide-slate-800 text-sm">
-                    <thead class="bg-slate-950/60 text-left text-xs uppercase tracking-wider text-slate-400">
+            <div class="overflow-hidden rounded-2xl border border-slate-200 bg-white transition-colors dark:border-slate-800 dark:bg-slate-900/60">
+                <table class="min-w-full divide-y divide-slate-200 text-sm transition-colors dark:divide-slate-800">
+                    <thead class="bg-slate-100 text-left text-xs uppercase tracking-wider text-slate-500 transition-colors dark:bg-slate-950/60 dark:text-slate-400">
                         <tr>
                             <th class="px-4 py-3">Title</th>
                             <th class="px-4 py-3">Format</th>
@@ -200,9 +200,9 @@
                             <th class="px-4 py-3">Action</th>
                         </tr>
                     </thead>
-                    <tbody id="downloads-table" class="divide-y divide-slate-800 text-slate-200">
+                    <tbody id="downloads-table" class="divide-y divide-slate-200 text-slate-600 transition-colors dark:divide-slate-800 dark:text-slate-200">
                         <tr id="downloads-empty">
-                            <td colspan="6" class="px-4 py-6 text-center text-slate-500">
+                            <td colspan="6" class="px-4 py-6 text-center text-slate-500 transition-colors dark:text-slate-500">
                                 Downloads will appear here once you start a job.
                             </td>
                         </tr>
@@ -213,55 +213,55 @@
 
         <section id="features" class="space-y-10">
             <div class="flex flex-col gap-2">
-                <h3 class="text-2xl font-semibold text-white">Why creators use this downloader</h3>
-                <p class="text-sm text-slate-400">High throughput conversions optimised for modern workflows.</p>
+                <h3 class="text-2xl font-semibold text-slate-900 transition-colors dark:text-white">Why creators use this downloader</h3>
+                <p class="text-sm text-slate-500 transition-colors dark:text-slate-400">High throughput conversions optimised for modern workflows.</p>
             </div>
             <div class="grid gap-6 md:grid-cols-3">
-                <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6">
-                    <h4 class="text-lg font-semibold text-white">High fidelity output</h4>
-                    <p class="mt-2 text-sm text-slate-400">Preserve original resolution and framerate, or select audio bitrates optimised for streaming and voice.</p>
+                <div class="rounded-2xl border border-slate-200 bg-white p-6 transition-colors dark:border-slate-800 dark:bg-slate-900/60">
+                    <h4 class="text-lg font-semibold text-slate-900 transition-colors dark:text-white">High fidelity output</h4>
+                    <p class="mt-2 text-sm text-slate-600 transition-colors dark:text-slate-400">Preserve original resolution and framerate, or select audio bitrates optimised for streaming and voice.</p>
                 </div>
-                <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6">
-                    <h4 class="text-lg font-semibold text-white">Multiple platforms</h4>
-                    <p class="mt-2 text-sm text-slate-400">Support for YouTube, TikTok, Instagram, Facebook, Twitter/X, Vimeo, Dailymotion and more via the integrated API.</p>
+                <div class="rounded-2xl border border-slate-200 bg-white p-6 transition-colors dark:border-slate-800 dark:bg-slate-900/60">
+                    <h4 class="text-lg font-semibold text-slate-900 transition-colors dark:text-white">Multiple platforms</h4>
+                    <p class="mt-2 text-sm text-slate-600 transition-colors dark:text-slate-400">Support for YouTube, TikTok, Instagram, Facebook, Twitter/X, Vimeo, Dailymotion and more via the integrated API.</p>
                 </div>
-                <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6">
-                    <h4 class="text-lg font-semibold text-white">Queue aware</h4>
-                    <p class="mt-2 text-sm text-slate-400">Background queue workers process downloads while you continue browsing. Status updates arrive automatically.</p>
+                <div class="rounded-2xl border border-slate-200 bg-white p-6 transition-colors dark:border-slate-800 dark:bg-slate-900/60">
+                    <h4 class="text-lg font-semibold text-slate-900 transition-colors dark:text-white">Queue aware</h4>
+                    <p class="mt-2 text-sm text-slate-600 transition-colors dark:text-slate-400">Background queue workers process downloads while you continue browsing. Status updates arrive automatically.</p>
                 </div>
             </div>
         </section>
 
         <section id="faq" class="space-y-6">
             <div>
-                <h3 class="text-2xl font-semibold text-white">Frequently asked questions</h3>
-                <p class="text-sm text-slate-400">Answers to common questions from creators.</p>
+                <h3 class="text-2xl font-semibold text-slate-900 transition-colors dark:text-white">Frequently asked questions</h3>
+                <p class="text-sm text-slate-500 transition-colors dark:text-slate-400">Answers to common questions from creators.</p>
             </div>
-            <div class="divide-y divide-slate-800 rounded-2xl border border-slate-800 bg-slate-900/60">
-                <details class="group open:bg-slate-900/80">
-                    <summary class="flex cursor-pointer items-center justify-between px-6 py-4 text-sm font-semibold text-slate-200">
+            <div class="divide-y divide-slate-200 rounded-2xl border border-slate-200 bg-white transition-colors dark:divide-slate-800 dark:border-slate-800 dark:bg-slate-900/60">
+                <details class="group transition-colors open:bg-slate-100 dark:open:bg-slate-900/80">
+                    <summary class="flex cursor-pointer items-center justify-between px-6 py-4 text-sm font-semibold text-slate-700 transition-colors dark:text-slate-200">
                         Which platforms are supported?
                         <span class="transition group-open:rotate-180">&#9660;</span>
                     </summary>
-                    <div class="px-6 pb-4 text-sm text-slate-400">
+                    <div class="px-6 pb-4 text-sm text-slate-600 transition-colors dark:text-slate-400">
                         Any video link recognised by the upstream API including YouTube, TikTok, Instagram, Facebook, Twitter/X, Vimeo, Dailymotion, and others.
                     </div>
                 </details>
-                <details class="group open:bg-slate-900/80">
-                    <summary class="flex cursor-pointer items-center justify-between px-6 py-4 text-sm! font-semibold text-slate-200">
+                <details class="group transition-colors open:bg-slate-100 dark:open:bg-slate-900/80">
+                    <summary class="flex cursor-pointer items-center justify-between px-6 py-4 text-sm font-semibold text-slate-700 transition-colors dark:text-slate-200">
                         Can I monitor multiple downloads?
                         <span class="transition group-open:rotate-180">&#9660;</span>
                     </summary>
-                    <div class="px-6 pb-4 text-sm text-slate-400">
+                    <div class="px-6 pb-4 text-sm text-slate-600 transition-colors dark:text-slate-400">
                         Yes. Each job is queued separately. The dashboard polls their status and surfaces download links as soon as the files are ready.
                     </div>
                 </details>
-                <details class="group open:bg-slate-900/80">
-                    <summary class="flex cursor-pointer items-center justify-between px-6 py-4 text-sm font-semibold text-slate-200">
+                <details class="group transition-colors open:bg-slate-100 dark:open:bg-slate-900/80">
+                    <summary class="flex cursor-pointer items-center justify-between px-6 py-4 text-sm font-semibold text-slate-700 transition-colors dark:text-slate-200">
                         Do I need to keep the page open?
                         <span class="transition group-open:rotate-180">&#9660;</span>
                     </summary>
-                    <div class="px-6 pb-4 text-sm text-slate-400">
+                    <div class="px-6 pb-4 text-sm text-slate-600 transition-colors dark:text-slate-400">
                         Polling happens in the browser. Keep the tab open until a job reaches the completed state so the signed download link is captured.
                     </div>
                 </details>
