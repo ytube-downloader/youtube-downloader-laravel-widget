@@ -1,4 +1,4 @@
-# Laravel Widget Template
+# YouTube Downloader Laravel Widget Template
 
 Laravel Widget Template delivers a modern Laravel 12 stack for building widget-driven media download experiences with a queued workflow, RESTful API, and Vite-powered front end.
 
@@ -20,7 +20,7 @@ Laravel Widget Template delivers a modern Laravel 12 stack for building widget-d
 
 1. 📥 Clone the repository and enter the project directory:
    ```bash
-   git clone https://github.com/ytube-downloader/laravel-widget-template.git
+   git clone https://github.com/ytube-downloader/youtube-downloader-laravel-widget
    cd laravel-widget-template
    ```
 
